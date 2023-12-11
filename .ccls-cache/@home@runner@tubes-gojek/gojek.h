@@ -35,7 +35,8 @@ struct listDriver {
 
 // deklarasi linked list customer
 struct customer {
-  string nama, alamat, no_telp;
+  string nama, alamat;
+  int no_telp;
 };
 
 typedef struct elmCustomer *adrCustomer;
@@ -89,7 +90,7 @@ void insertLastCustomer(listCustomer &LC, adrCustomer C);
 void editC(listCustomer &LC, string no_pol);
 
 // delete customer
-void deleteC(listCustomer &LC, adrCustomer &C, string NoTelp);
+void deleteC(listCustomer &LC, adrCustomer &C, int NoTelp);
 void deleteFirstC(listCustomer &LC, adrCustomer &C);
 void deleteAfterC(listCustomer &LC, adrCustomer &C, adrCustomer prec);
 void deleteLastC(listCustomer &LC, adrCustomer &C);
@@ -99,8 +100,14 @@ adrCustomer searchCustomer(listCustomer LC, string nama);
 // show customer
 void showCustomer(listCustomer LC);
 void showElmCustomer(listCustomer LC, adrCustomer C);
+void showCustomerByDriver(listDriver LD, listOrder LO, string namaDriver);
 void showAllCustomerWithDriver(listCustomer LC, listOrder LO);
-void countDriverByCustomer(listDriver LD, listOrder LO, listCustomer LC, string namaCustomer);
+void countDriverByCustomer(listDriver LD, listOrder LO, listCustomer LC,
+                           string namaCustomer);
+void countCustomerByDriver(listDriver LD, listOrder LO, listCustomer LC,
+                           string namaDriver);
+void countDriverNoOrder(listDriver LD, listOrder LO, listCustomer LC);
+void countCustomerNoOrder(listDriver LD, listOrder LO, listCustomer LC);
 
 //--------------------------------------------------------------------------------------------------------
 // ORDER
@@ -108,17 +115,21 @@ adrOrder createElmOrder(adrDriver D, adrCustomer C);
 void createListOrder(listOrder &LO);
 void insertOrder(listDriver LD, listCustomer LC, listOrder &LO,
                  string namaDriver, string namaCustomer);
-void editOrder(listOrder &LO, adrOrder O);
-void deleteO(listDriver LD, listCustomer LC, listOrder &LO, adrOrder &O, string namaDriver, string namaCustomer);
+void editOrder(listOrder &LO, listDriver LD, listCustomer LC, string namaDriver,
+               string namaCustomer);
+void deleteO(listDriver LD, listCustomer LC, listOrder &LO, adrOrder &O,
+             string namaDriver, string namaCustomer);
 
 // delete order
 void deleteFirstO(listOrder &LO, adrOrder &O);
 void deleteAfterO(listOrder &LO, adrOrder &O, adrOrder prec);
 void deleteLastO(listOrder &LO, adrOrder &O);
 
-// show order
-void showOrderbyDriver(listOrder LO, listDriver LD);
-void showOrderbyCustomer(listOrder LO, listDriver LD);
+bool isHaveRelation(listDriver LD, listCustomer LC, listOrder LO,
+                    string namaDriver, string namaCustomer);
+void showOrder(listOrder LO);
+void insertOrderDummy(listDriver LD, listCustomer LC, listOrder &LO,
+                      string namaDriver, string namaCustomer);
 
 //--------------------------------------------------------------------------------------------------------
 // MENU
@@ -136,13 +147,20 @@ void menuCustomerEdit(listCustomer &LD);
 void menuCustomerDelete(listCustomer &LD, adrCustomer &D);
 void menuCustomerShow(listCustomer LD);
 char menuOrder();
-void menuOrderInsert(listOrder &LD);
-void menuOrderEdit(listOrder &LD);
-void menuOrderDelete(listOrder &LD);
-void menuOrderShow(listOrder LD);
+void menuOrderInsert(listOrder &LO, listCustomer LC, listDriver LD);
+void menuOrderEdit(listOrder &LO, listDriver LD, listCustomer LC);
+void menuOrderDelete(listOrder &LO, listCustomer LC, listDriver LD,
+                     adrOrder &O);
+void menuOrderShow(listOrder LO);
 char menuShowCount();
 void menuShowDriverByCustomer(listCustomer LC, listOrder LO);
 void menuShowAllDriverWithCustomer(listDriver LD, listOrder LO);
+void menuShowCustomerByDriver(listDriver LD, listOrder LO);
+void menuShowAllCustomerWithDriver(listCustomer LC, listOrder LO);
+void menuCountDriverByCustomer(listDriver LD, listOrder LO, listCustomer LC);
+void menuCountCustomerByDriver(listDriver LD, listOrder LO, listCustomer LC);
+void menuCountDriverNoOrder(listDriver LD, listOrder LO, listCustomer LC);
+void menuCountCustomerNoOrder(listDriver LD, listOrder LO, listCustomer LC);
 
 // deklarasi data dummy
 void data_dummy(listDriver &LD, listOrder &LO, listCustomer &LC, adrDriver &D,

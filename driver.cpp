@@ -185,18 +185,18 @@ void showDriverByCustomer(listCustomer LC, listOrder LO, string namaCustomer) {
     cout << "Data customer tidak ditemukan." << endl;
     return;
   };
-
   cout << endl;
-  cout << "=============[ Data Customer ]============" << endl;
+  cout << "=============[ Data Customer ]===============" << endl;
   cout << "Nama : " << info(C).nama << endl;
   cout << "Alamat : " << info(C).alamat << endl;
   cout << "No telp : " << info(C).no_telp << endl;
   cout << endl;
-  cout << "==============[ Data Driver ]=============" << endl;
+  cout << "==========[ Related Data Driver ]============" << endl;
   adrOrder O = firstOrder(LO);
   if (O == NULL) {
     cout << "Tidak ada data order." << endl;
-    cout << "====================================" << endl;
+    cout << endl;
+    cout << "=============================================" << endl;
     return;
   };
   while (O != NULL) {
@@ -210,42 +210,52 @@ void showDriverByCustomer(listCustomer LC, listOrder LO, string namaCustomer) {
     O = next(O);
   };
   if (!found) {
-    cout << "Customer ini belum pernah order." << endl;
+    cout << "Driver ini belum pernah order." << endl;
   };
-  cout << "====================================" << endl;
+  cout << endl;
+  cout << "============================================" << endl;
 };
 
 void showAllDriverWithCustomer(listDriver LD, listOrder LO) {
   adrDriver D = first(LD);
-
-  cout << "====[ DAFTAR DRIVER DENGAN CUSTOMER ]====" << endl;
-  cout << endl;
+  bool found = false;
+  cout << "======[ DAFTAR DRIVER DENGAN CUSTOMER ]=======" << endl;
   if (D == NULL) {
     cout << "Data driver kosong." << endl;
     return;
   };
-
   do {
+    cout << endl;
+    cout << "===============[ Data Driver ]================" << endl;
     cout << "No pol : " << info(D).no_pol << endl;
     cout << "Nama : " << info(D).nama << endl;
     cout << "Rating : " << info(D).rating << endl;
-    cout << "====================================" << endl;
-    cout << "======[ Related Data Customer ]=====" << endl;
-
-    adrOrder O = firstOrder(LO); // Reset O to the beginning of the order list
-
+    cout << "===========[ Related Data Customer ]==========" << endl;
+    adrOrder O = firstOrder(LO);
+    if (O == NULL) {
+      cout << "Tidak ada data order." << endl;
+      cout << endl;
+      cout << "====================================" << endl;
+      return;
+    };
     do {
       if (orderDriver(O)->info.nama == info(D).nama) {
         cout << "\t| Nama: " << info(orderCustomer(O)).nama << endl;
         cout << "\t| No. Telp: " << info(orderCustomer(O)).no_telp << endl;
         cout << "\t| Alamat: " << info(orderCustomer(O)).alamat << endl;
         cout << "\t-------------------------------------" << endl;
+        found = true;
       };
       O = next(O);
     } while (O != firstOrder(LO) && O != NULL);
-
+    if (!found) {
+      cout << "Driver ini belum pernah order." << endl;
+    }
+    found = false;
     D = next(D);
   } while (D != first(LD));
+  cout << endl;
+  cout << "==============================================" << endl;
 };
 
 /*

@@ -11,7 +11,8 @@ int main() {
   adrCustomer C;
   createListCust(LC);
   listOrder LO;
-  createListD(LD);
+  adrOrder O;
+  createListOrder(LO);
 
   // deklarasi variable
   char option, optionInCase;
@@ -85,13 +86,13 @@ int main() {
         optionInCase = menuOrder();
         switch (optionInCase) {
         case '1':
-          menuOrderInsert(LO);
+          menuOrderInsert(LO, LC, LD);
           break;
         case '2':
-          menuOrderEdit(LO);
+          menuOrderEdit(LO, LD, LC);
           break;
         case '3':
-          menuOrderDelete(LO);
+          menuOrderDelete(LO, LC, LD, O);
           break;
         case '4':
           menuOrderShow(LO);
@@ -125,14 +126,22 @@ int main() {
           menuCustomerShow(LC);
           break;
         case '5':
+          menuShowCustomerByDriver(LD, LO);
           break;
         case '6':
+          menuShowAllCustomerWithDriver(LC, LO);
           break;
-        case '7':
+        case 'q':
+          menuCountDriverByCustomer(LD, LO, LC);
           break;
-        case '8':
+        case 'w':
+          menuCountDriverNoOrder(LD, LO, LC);
           break;
-        case '9':
+        case 'e':
+          menuCountCustomerByDriver(LD, LO, LC);
+          break;
+        case 'r':
+          menuCountCustomerNoOrder(LD, LO, LC);
           break;
         case '`':
           isExit = true;
