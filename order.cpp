@@ -195,11 +195,22 @@ void deleteLastO(listOrder &LO, adrOrder &O) {
 bool isHaveRelation(listDriver LD, listCustomer LC, listOrder LO,
                     string namaDriver, string namaCustomer) {
   adrDriver D = searchDriver(LD, namaDriver);
+  
   adrCustomer C = searchCustomer(LC, namaCustomer);
   adrOrder O = firstOrder(LO);
 
   while (O != NULL) {
     if (orderDriver(O) == D && orderCustomer(O) == C) {
+      cout << endl;
+      cout << "------- Driver -------" << endl;
+      cout << "Nama: " << D->info.nama << endl;
+      cout << "Plat Nomor: " << D->info.no_pol << endl;
+      cout << "Rating: " << D->info.rating << endl;
+      cout << "------ Customer ------" << endl;
+      cout << "Nama: " << info(C).nama << endl;
+      cout << "Alamat: " << C->info.alamat << endl;
+      cout << "No Telp: " << C->info.no_telp << endl;
+      cout << endl;
       return true;
     };
     O = next(O);

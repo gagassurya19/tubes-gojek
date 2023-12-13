@@ -143,6 +143,9 @@ int main() {
         case 'r':
           menuCountCustomerNoOrder(LD, LO, LC);
           break;
+        case 't':
+          menuIsHaveRelation(LD, LC, LO);
+          break;
         case '`':
           isExit = true;
           break;

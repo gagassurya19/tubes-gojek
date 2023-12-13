@@ -161,6 +161,7 @@ void menuCountDriverByCustomer(listDriver LD, listOrder LO, listCustomer LC);
 void menuCountCustomerByDriver(listDriver LD, listOrder LO, listCustomer LC);
 void menuCountDriverNoOrder(listDriver LD, listOrder LO, listCustomer LC);
 void menuCountCustomerNoOrder(listDriver LD, listOrder LO, listCustomer LC);
+void menuIsHaveRelation(listDriver LD, listCustomer LC, listOrder LO);
 
 // deklarasi data dummy
 void data_dummy(listDriver &LD, listOrder &LO, listCustomer &LC, adrDriver &D,

@@ -313,6 +313,7 @@ char menuShowCount() {
   cout << "| [W] Count Driver Not Have Customer   |" << endl;
   cout << "| [E] Count Customer By Driver         |" << endl;
   cout << "| [R] Count Customer Not Have Driver   |" << endl;
+  cout << "| [T] Check Relation                   |" << endl;
   cout << "| [`~] Back                            |" << endl;
   cout << "========================================" << endl;
   char option;
@@ -401,6 +402,26 @@ void menuCountCustomerNoOrder(listDriver LD, listOrder LO, listCustomer LC) {
   countCustomerNoOrder(LD, LO, LC);
   cout << endl;
   cout << "===========================================" << endl;
+  pressEnter();
+  clearScreen();
+};
+
+void menuIsHaveRelation(listDriver LD, listCustomer LC, listOrder LO){
+  string namaDriver, namaCustomer;
+  clearScreen();
+  cout << "========[ COUNT CUSTOMER NO ORDER ]========" << endl;
+  cout << endl;
+  cout << "namaDriver: ";
+  cin >> namaDriver;
+  cout << "namaCustomer: ";
+  cin >> namaCustomer;
+  bool isHave = isHaveRelation(LD, LC, LO, namaDriver, namaCustomer);
+  if(isHave){
+    cout << "Driver " << namaDriver << " punya relasi pada Customer " << namaCustomer << endl;
+  } else {
+    cout << "Driver " << namaDriver << " tidak punya relasi pada Customer " << namaCustomer << endl;
+  };
+  cout << "============================================" << endl;
   pressEnter();
   clearScreen();
 };
